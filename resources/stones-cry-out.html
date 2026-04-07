@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Stones Cry Out — Stones &amp; Anchors</title>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/intro-doc.css">
+  <style>
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .evidence-card {
+      background: rgba(139, 111, 71, 0.04);
+      border: 1px solid rgba(139, 111, 71, 0.2);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .claim-box {
+      border-left: 3px solid var(--light-stone);
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .claim-label {
+      font-family: 'Palatino Linotype', serif;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--light-stone);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .claim-text {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--slate);
+    }
+
+    .discovery-box {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    .discovery-label {
+      font-family: 'Palatino Linotype', serif;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .discovery-title {
+      font-family: 'Palatino Linotype', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--stone);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .impact-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--stone);
+    }
+
+    .monolith-stat {
+      font-family: 'Palatino Linotype', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--rope);
+      opacity: 0.2;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      pointer-events: none;
+    }
+
+    .evidence-media {
+      margin: 0 0 1.1rem;
+    }
+
+    .evidence-media-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 0 0 1.1rem;
+    }
+
+    @media (min-width: 640px) {
+      .evidence-media-row--two {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .evidence-figure {
+      margin: 0;
+    }
+
+    .evidence-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(139, 111, 71, 0.28);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .evidence-figure figcaption {
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--slate);
+      margin-top: 0.45rem;
+    }
+
+    .evidence-figure figcaption a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="page-inner page-intro">
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-logo" href="../index.html">Stones <span class="amp">&amp;</span> Anchors</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <a href="../schedule.html">Schedule</a>
+        <a href="index.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main-inner">
+    <div class="page-panel">
+      <div class="band-top"></div>
+      <div class="band-accent"></div>
+
+      <div class="page-panel-inner">
+        <div class="corner-br"></div>
+        <div class="corner-bl"></div>
+
+        <p class="page-eyebrow">Supplemental Resource</p>
+        <h1 class="page-title">The Stones Cry Out</h1>
+
+        <div class="divider compact">
+          <div class="divider-line"></div>
+          <div class="divider-dot"></div>
+          <div class="divider-line"></div>
+        </div>
+
+        <p class="verse topic-lede">
+          "I tell you," he replied, "if they keep quiet, the stones will cry out." — Luke 19:40
+        </p>
+
+        <div class="doc-hero">
+          <div class="doc-hero__number">25,000+</div>
+          <div class="doc-hero__unit">Archaeological Sites</div>
+          <p class="doc-hero__desc">For centuries, critics dismissed biblical accounts as pious myths. Today, archaeology has verified more than 25,000 sites, names, and events mentioned in the text, systematically dismantling the "mythology" argument.</p>
+        </div>
+
+        <div class="evidence-grid">
+
+          <div class="evidence-card">
+            <div class="monolith-stat">01</div>
+            <div class="claim-box">
+              <span class="claim-label">The Critical Consensus (Pre-1993)</span>
+              <p class="claim-text">"King David is a literary fiction, a 'King Arthur' of Israel created centuries later to give the nation a heroic past."</p>
+            </div>
+            <div class="discovery-box">
+              <span class="discovery-label">The Discovery</span>
+              <span class="discovery-title">The Tel Dan Stele</span>
+              <div class="evidence-media">
+                <figure class="evidence-figure">
+                  <img src="../assets/images/archaeology/tel-dan-stele.jpg" width="1455" height="1408" alt="Tel Dan Stele fragment with Aramaic inscription on display">
+                  <figcaption>Tel Dan Stele (fragment) — Israel Museum, Jerusalem. <a href="https://commons.wikimedia.org/wiki/File:JRSLM_300116_Tel_Dan_Stele_01.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · CC BY-SA 4.0</figcaption>
+                </figure>
+              </div>
+              <p class="impact-text">In 1993, at the foot of Mount Hermon, archaeologists found a 9th-century BC victory monument. Carved in the stone was the phrase <strong>"House of David."</strong> It was the first non-biblical evidence of David’s existence, proving he was a historical monarch, not a fairy tale.</p>
+            </div>
+          </div>
+
+          <div class="evidence-card">
+            <div class="monolith-stat">02</div>
+            <div class="claim-box">
+              <span class="claim-label">The Critical Consensus (Pre-1961)</span>
+              <p class="claim-text">"Pontius Pilate was a character invented by the Gospel writers; there is no record of such a man in Roman administrative history."</p>
+            </div>
+            <div class="discovery-box">
+              <span class="discovery-label">The Discovery</span>
+              <span class="discovery-title">The Pilate Stone</span>
+              <div class="evidence-media">
+                <figure class="evidence-figure">
+                  <img src="../assets/images/archaeology/pilate-stone.jpg" width="2272" height="1704" alt="Limestone block with Latin inscription naming Pontius Pilate, prefect of Judea">
+                  <figcaption>Pilate inscription, Caesarea Maritima (1961). <a href="https://commons.wikimedia.org/wiki/File:Pilate_Inscription.JPG" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · CC BY-SA 2.0</figcaption>
+                </figure>
+              </div>
+              <p class="impact-text">Italian archaeologists excavating a Roman theater in Caesarea Maritima uncovered a limestone block. The inscription clearly read: <em>"Pontius Pilatus, Prefect of Judea."</em> A single stone silenced decades of academic skepticism regarding the trial of Jesus.</p>
+            </div>
+          </div>
+
+          <div class="evidence-card">
+            <div class="monolith-stat">03</div>
+            <div class="claim-box">
+              <span class="claim-label">The Critical Consensus</span>
+              <p class="claim-text">"The biblical stories of vast engineering projects like the Tunnel of Siloam are exaggerations of primitive tribal leaders."</p>
+            </div>
+            <div class="discovery-box">
+              <span class="discovery-label">The Discovery</span>
+              <span class="discovery-title">Hezekiah's Bulla & Tunnel</span>
+              <div class="evidence-media-row evidence-media-row--two">
+                <figure class="evidence-figure">
+                  <img src="../assets/images/archaeology/siloam-tunnel.jpg" width="675" height="900" alt="Interior of Hezekiah's Tunnel carved through bedrock under Jerusalem">
+                  <figcaption>Hezekiah’s Tunnel (Siloam). <a href="https://commons.wikimedia.org/wiki/File:Siloam22.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · CC BY 3.0</figcaption>
+                </figure>
+                <figure class="evidence-figure">
+                  <img src="../assets/images/archaeology/hezekiah-bulla.jpg" width="422" height="220" alt="Clay bulla seal impression reading belonging to Hezekiah son of Ahaz king of Judah">
+                  <figcaption>Hezekiah-related seal impressions (incl. royal bulla type). <a href="https://commons.wikimedia.org/wiki/File:LMLK,_Ezekiah_seals.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · CC BY-SA 3.0</figcaption>
+                </figure>
+              </div>
+              <p class="impact-text">Archaeologists found the 1,750-foot tunnel carved through solid rock under Jerusalem, matching the account in 2 Kings 20. More recently, in 2015, a clay seal (bulla) belonging to <strong>King Hezekiah himself</strong> was found in the Ophel, dating to the exact period the Bible describes.</p>
+            </div>
+          </div>
+
+          <div class="evidence-card">
+            <div class="monolith-stat">04</div>
+            <div class="claim-box">
+              <span class="claim-label">The Critical Consensus (19th Century)</span>
+              <p class="claim-text">"The Bible mentions a 'Hittite Empire' over 40 times, but history knows no such people. They are a biblical invention."</p>
+            </div>
+            <div class="discovery-box">
+              <span class="discovery-label">The Discovery</span>
+              <span class="discovery-title">The Library of Hattusa</span>
+              <div class="evidence-media">
+                <figure class="evidence-figure">
+                  <img src="../assets/images/archaeology/hittite-tablet.jpg" width="1820" height="2273" alt="Hittite cuneiform clay tablet with wedge-shaped script">
+                  <figcaption>Hittite cuneiform tablet from Hattusa (13th c. BC), Oriental Institute, Chicago. <a href="https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Legal_Deposition%28%3F%29.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · CC0</figcaption>
+                </figure>
+              </div>
+              <p class="impact-text">Archaeologists discovered the massive Hittite capital in modern-day Turkey, including a library of 10,000 clay tablets. This "mythical" people turned out to be one of the greatest superpowers of the ancient world, exactly as the Old Testament recorded.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <blockquote class="doc-pullquote">
+          <p class="doc-pullquote__text">"Archaeology has not yet produced any finding that is in contradiction to a biblical utterance. It has confirmed biblical history in general and in detail."</p>
+          <footer class="doc-pullquote__source">Dr. Nelson Glueck, Renowned Archaeologist</footer>
+        </blockquote>
+
+        <div class="details back-link-bar">
+          <p><a href="index.html">← Back to Resources</a></p>
+        </div>
+      </div>
+
+      <div class="band-stack">
+        <div class="band-accent"></div>
+        <div class="band-top"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Stones &amp; Anchors · Men's Bible Study</p>
+  </footer>
+
+</body>
+</html>

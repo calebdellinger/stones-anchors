@@ -1,0 +1,419 @@
+/* Intro week: “Most singular document” analysis — scoped to .intro-doc, tokens only */
+
+.intro-doc {
+  position: relative;
+  margin-top: 0.5rem;
+  padding: 0.15rem 0 0.25rem;
+  overflow: hidden;
+}
+
+.intro-doc__texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(139, 111, 71, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(74, 103, 65, 0.05) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(139, 111, 71, 0.04) 40px, rgba(139, 111, 71, 0.04) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(139, 111, 71, 0.04) 40px, rgba(139, 111, 71, 0.04) 41px);
+  opacity: 0.85;
+}
+
+.intro-doc__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.doc-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.doc-header__eyebrow {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.doc-header__title {
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  font-weight: 900;
+  color: var(--stone);
+  line-height: 1.15;
+  margin-bottom: 0.65rem;
+}
+
+.doc-header__sub {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--light-stone);
+  letter-spacing: 0.04em;
+}
+
+.doc-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem auto 0;
+  max-width: 24rem;
+}
+
+.doc-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rope), transparent);
+}
+
+.doc-divider__diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--rope);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.doc-hero {
+  background: linear-gradient(135deg, rgba(139, 111, 71, 0.1), rgba(74, 103, 65, 0.06));
+  border: 1px solid rgba(139, 111, 71, 0.28);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--sand), transparent);
+}
+
+.doc-hero__number {
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  font-weight: 900;
+  color: var(--stone);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.doc-hero__unit {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--rope);
+  text-transform: uppercase;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.doc-hero__desc {
+  font-size: 0.95rem;
+  color: var(--slate);
+  font-style: italic;
+  max-width: 32rem;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.doc-section {
+  margin-bottom: 1.75rem;
+}
+
+.doc-section__title {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  color: var(--rope);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.doc-section__title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(139, 111, 71, 0.45), transparent);
+}
+
+.doc-section__desc {
+  font-size: 0.95rem;
+  color: var(--slate);
+  line-height: 1.6;
+  max-width: 40rem;
+  margin: 0 0 1.25rem;
+}
+
+.doc-bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.doc-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.doc-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.doc-bar-label {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.72rem;
+  color: var(--light-stone);
+  letter-spacing: 0.04em;
+}
+
+.doc-bar-label--primary {
+  color: var(--stone);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.doc-bar-value {
+  font-size: 0.78rem;
+  color: var(--light-stone);
+  font-style: italic;
+  text-align: right;
+}
+
+.doc-bar-track {
+  height: 8px;
+  background: rgba(44, 42, 38, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(139, 111, 71, 0.15);
+}
+
+.doc-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: introDocBarGrow 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.doc-bar-fill--gold {
+  background: linear-gradient(90deg, var(--rope), var(--sand));
+}
+
+.doc-bar-fill--silver {
+  background: linear-gradient(90deg, var(--light-stone), var(--sand));
+}
+
+.doc-bar-fill--bronze {
+  background: linear-gradient(90deg, var(--slate), var(--light-stone));
+}
+
+.doc-bar-fill--dim {
+  background: linear-gradient(90deg, var(--stone), var(--light-stone));
+}
+
+.doc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.doc-stat-card {
+  background: rgba(139, 111, 71, 0.06);
+  border: 1px solid rgba(139, 111, 71, 0.2);
+  border-radius: 3px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.doc-stat-card:hover {
+  border-color: rgba(139, 111, 71, 0.4);
+  background: rgba(139, 111, 71, 0.09);
+}
+
+.doc-stat-card__number {
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--stone);
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.doc-stat-card__label {
+  font-size: 0.65rem;
+  color: var(--light-stone);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+}
+
+.doc-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.doc-ms-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.doc-ms-table th {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  color: var(--rope);
+  text-transform: uppercase;
+  padding: 0.5rem 0.65rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.35);
+}
+
+.doc-ms-table td {
+  padding: 0.65rem 0.65rem;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
+  color: var(--slate);
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.doc-ms-table tbody tr:first-child td {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+.doc-ms-table td:first-child {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.8rem;
+}
+
+.doc-ms-table td.doc-ms-table__hi {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+.doc-ms-table tbody tr:hover td {
+  background: rgba(139, 111, 71, 0.05);
+}
+
+.doc-timeline {
+  position: relative;
+  padding-left: 1.35rem;
+}
+
+.doc-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(139, 111, 71, 0.45), transparent);
+}
+
+.doc-timeline-item {
+  position: relative;
+  margin-bottom: 1.1rem;
+  padding-left: 1rem;
+}
+
+.doc-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.doc-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.35rem;
+  top: 0.35rem;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--rope);
+  background: var(--cream);
+  transform: rotate(45deg);
+}
+
+.doc-timeline-year {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.doc-timeline-text {
+  font-size: 0.88rem;
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+.doc-pullquote {
+  border-left: 2px solid var(--rope);
+  padding: 1.1rem 1rem 1.1rem 1.15rem;
+  margin: 1.5rem 0;
+  background: rgba(139, 111, 71, 0.06);
+}
+
+.doc-pullquote__text {
+  font-size: 0.98rem;
+  font-style: italic;
+  color: var(--slate);
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+
+.doc-pullquote__source {
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: var(--rope);
+  text-transform: uppercase;
+}
+
+.doc-footer {
+  text-align: center;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(139, 111, 71, 0.2);
+}
+
+.doc-footer__title {
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--stone);
+  margin-bottom: 0.5rem;
+}
+
+.doc-footer__sub {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--light-stone);
+  line-height: 1.55;
+}
+
+@keyframes introDocBarGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}

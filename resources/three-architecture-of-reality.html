@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THREE — The Architecture of Reality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8A6F30;
+    --black: #0A0A08;
+    --dark: #111109;
+    --panel: #161612;
+    --border: #2A2820;
+    --text: #D4C9A8;
+    --text-dim: #7A7260;
+    --white: #F0EAD6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .hero-triangle {
+    width: 70vmin;
+    height: 70vmin;
+    max-width: 600px;
+    max-height: 600px;
+    opacity: 0.04;
+    animation: slowRotate 60s linear infinite;
+  }
+
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-numeral {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(120px, 30vw, 280px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--gold-dim);
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 2.5vw, 14px);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: relative;
+    z-index: 2;
+    margin-top: -20px;
+    animation: fadeInUp 1.2s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 4vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-dim);
+    text-align: center;
+    max-width: 600px;
+    margin-top: 24px;
+    line-height: 1.5;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1.2s ease 0.6s forwards;
+    opacity: 0;
+  }
+
+  .scroll-hint {
+    position: relative;
+    z-index: 2;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: fadeInUp 1.2s ease 1s forwards;
+    opacity: 0;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), var(--gold-dim), var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ── DISCIPLINE CARDS ── */
+  .disciplines-grid {
+    display: grid;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .disc-card {
+    background: var(--panel);
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    overflow: hidden;
+  }
+
+  .disc-card:hover {
+    background: #1c1c18;
+  }
+
+  .disc-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+  }
+
+  .disc-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .disc-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .disc-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    flex: 1;
+  }
+
+  .disc-teaser {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    flex: 2;
+    line-height: 1.4;
+  }
+
+  .disc-toggle {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-dim);
+    font-size: 14px;
+    transition: transform 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+  }
+
+  .disc-card.open .disc-toggle {
+    transform: rotate(45deg);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .disc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+
+  .disc-body.open {
+    max-height: 600px;
+  }
+
+  .disc-content {
+    padding: 0 24px 24px 84px;
+    border-top: 1px solid var(--border);
+    margin: 0 24px;
+    padding-top: 20px;
+  }
+
+  .disc-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .disc-content p:last-child { margin-bottom: 0; }
+
+  .disc-content .highlight {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .disc-pullquote {
+    margin: 16px 0 18px;
+    padding: 4px 0 2px 18px;
+    border-left: 2px solid rgba(201, 168, 76, 0.45);
+  }
+
+  .disc-pullquote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--text);
+    margin: 0 0 12px 0;
+  }
+
+  .disc-pullquote-source {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin: 0;
+    font-style: normal;
+    line-height: 1.5;
+  }
+
+  /* ── TRIANGLE VISUALIZATION ── */
+  .triangle-viz {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 48px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tri-svg-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  #tri-main {
+    width: 280px;
+    height: 280px;
+  }
+
+  .tri-tabs {
+    display: flex;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+
+  .tri-tab {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px 14px;
+    background: var(--panel);
+    border: none;
+    color: var(--text-dim);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tri-tab:hover { background: #1c1c18; color: var(--text); }
+  .tri-tab.active { background: #1c1c18; color: var(--gold); }
+
+  .tri-content {
+    display: none;
+    text-align: left;
+  }
+
+  .tri-content.active {
+    display: block;
+  }
+
+  .tri-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .tri-content p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  /* ── THE PATTERN ── */
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .pattern-cell {
+    background: var(--panel);
+    padding: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .pattern-cell.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pattern-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold-dim);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .pattern-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .pattern-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    padding: 80px 20px 120px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .closing-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4vw, 32px);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .closing-source {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 48px;
+  }
+
+  .closing-body {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ── BRIDGE ILLUSTRATION ── */
+  .bridge-section {
+    padding: 60px 20px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .bridge-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  #bridge-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .bridge-caption {
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 20px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .disc-header {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .disc-teaser { display: none; }
+    .disc-content { padding-left: 24px; }
+    .tri-tabs { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg class="hero-triangle" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="100,10 190,180 10,180" stroke="#C9A84C" stroke-width="1" fill="none"/>
+      <polygon points="100,40 165,165 35,165" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+      <polygon points="100,70 140,150 60,150" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
+      <line x1="100" y1="10" x2="100" y2="180" stroke="#C9A84C" stroke-width="0.3" opacity="0.5"/>
+      <line x1="10" y1="180" x2="190" y2="180" stroke="#C9A84C" stroke-width="0.3" opacity="0.5"/>
+      <line x1="10" y1="180" x2="100" y2="10" stroke="#C9A84C" stroke-width="0.3" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="hero-numeral">3</div>
+  <div class="hero-title">The Architecture of Reality</div>
+  <div class="hero-sub">From quarks to philosophy, the number three appears at every level of existence — not as coincidence, but as the irreducible minimum for stability, pattern, and resolution.</div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Explore</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DISCIPLINES -->
+<section class="section">
+  <div class="section-label">A Cross-Disciplinary Survey</div>
+  <div class="section-title">Where Three<br>Appears</div>
+</section>
+
+<div style="max-width:900px; margin: 0 auto; padding: 0 20px 80px;">
+<div class="disciplines-grid" id="disc-grid">
+
+  <!-- PHYSICS -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="5" fill="#C9A84C" opacity="0.8"/>
+          <circle cx="22" cy="22" r="5" fill="none" stroke="#C9A84C" stroke-width="1"/>
+          <ellipse cx="22" cy="22" rx="16" ry="6" stroke="#C9A84C" stroke-width="0.8" fill="none" transform="rotate(-30 22 22)" opacity="0.6"/>
+          <ellipse cx="22" cy="22" rx="16" ry="6" stroke="#C9A84C" stroke-width="0.8" fill="none" transform="rotate(30 22 22)" opacity="0.6"/>
+          <ellipse cx="22" cy="22" rx="16" ry="6" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="disc-name">Particle Physics</div>
+      <div class="disc-teaser">Three quarks. Three colors. Three generations of matter.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Every proton and neutron — the building blocks of every atom in the known universe — is composed of exactly <span class="highlight">three quarks</span>. Two up quarks and one down quark form a proton. Two down quarks and one up quark form a neutron. The number isn't arbitrary: it's determined by the deep mathematics of color confinement in Quantum Chromodynamics.</p>
+        <p>Quarks themselves come in <span class="highlight">three "colors"</span> — red, green, and blue — not as actual colors but as a triadic charge system. For a baryon to exist, it must combine all three. The universe enforces this law at the smallest scale we've ever probed.</p>
+        <p>Beyond that, the Standard Model organizes all known matter into <span class="highlight">three generations (families)</span> of particles. The first family — up quark, down quark, electron, electron neutrino — makes up all ordinary matter. Why three families? Physicists have no deeper answer. It simply is.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEOMETRY -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="22,5 39,36 5,36" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+          <line x1="22" y1="5" x2="22" y2="36" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="disc-name">Geometry & Structure</div>
+      <div class="disc-teaser">The triangle is the only shape that cannot deform under pressure.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>A square can be pushed into a parallelogram without breaking any of its sides. A pentagon can shift and warp. But a triangle, once its side-lengths are fixed, <span class="highlight">cannot change shape</span>. It is the only polygon that is inherently rigid. This is why every bridge, every truss, every crane, every roof structure in human engineering history is built on triangular members.</p>
+        <p>Three points also define the only stable plane in space. Two points define only a line. Four points may not all fall on the same plane. But <span class="highlight">three points always, exactly, and uniquely define a plane</span> — a flat surface. The triangle is thus the minimum unit of space itself.</p>
+        <p>In Euclidean geometry, the angles of any triangle always sum to exactly 180 degrees — a law that holds from the sub-millimeter to the scale of galaxies. Three is the irreducible minimum for enclosing space.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIMENSIONS -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="22" y1="36" x2="22" y2="10" stroke="#C9A84C" stroke-width="1.2"/>
+          <line x1="22" y1="36" x2="38" y2="42" stroke="#C9A84C" stroke-width="1.2"/>
+          <line x1="22" y1="36" x2="6" y2="42" stroke="#C9A84C" stroke-width="1.2"/>
+          <text x="23" y="8" fill="#C9A84C" font-size="7" font-family="monospace" opacity="0.8">H</text>
+          <text x="39" y="43" fill="#C9A84C" font-size="7" font-family="monospace" opacity="0.8">W</text>
+          <text x="2" y="43" fill="#C9A84C" font-size="7" font-family="monospace" opacity="0.8">D</text>
+        </svg>
+      </div>
+      <div class="disc-name">Space Itself</div>
+      <div class="disc-teaser">Reality exists in exactly three spatial dimensions.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Physical reality as we experience it has <span class="highlight">exactly three spatial dimensions</span> — length, width, and depth. Not two, not four. Physicists have explored mathematical models of universes with different numbers of dimensions, and the conclusions are stark: in two spatial dimensions, atoms cannot exist. In four or more, gravity is too unstable to form orbits. <span class="highlight">Stable matter and chemistry require exactly three.</span></p>
+        <p>Light travels in three-dimensional space. The inverse-square law — the reason gravity and light spread and weaken with distance — is a direct mathematical consequence of three-dimensional space. Change the number of dimensions and the law changes. The universe, as it actually functions, is tuned to three.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHEMISTRY -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="12" r="6" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <circle cx="12" cy="30" r="6" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <circle cx="32" cy="30" r="6" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <line x1="22" y1="18" x2="16" y2="24" stroke="#C9A84C" stroke-width="0.8" opacity="0.7"/>
+          <line x1="22" y1="18" x2="28" y2="24" stroke="#C9A84C" stroke-width="0.8" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="disc-name">Chemistry</div>
+      <div class="disc-teaser">Three states of matter. Three subatomic particles. The chemistry of life.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Every atom is built from <span class="highlight">three fundamental particles</span>: protons, neutrons, and electrons. The interaction of all matter — every reaction, every bond, every molecule — emerges from the interplay of these three. Remove any one and chemistry ceases to exist.</p>
+        <p>Matter presents itself to us in <span class="highlight">three fundamental states</span>: solid, liquid, and gas. (Plasma is a fourth, but it requires conditions far beyond ordinary experience.) These three represent the complete range of how matter organizes itself under normal energetic conditions.</p>
+        <p>Radioactive decay emits three types of radiation: <span class="highlight">alpha, beta, and gamma</span> — representing three different mechanisms of nuclear instability. Each has distinct penetration depth, charge, and energy. Together, they define the complete taxonomy of nuclear emission.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIOLOGY -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 8 C18 14 10 16 10 24 C10 32 18 36 22 36" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+          <path d="M22 8 C26 14 34 16 34 24 C34 32 26 36 22 36" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+          <line x1="22" y1="8" x2="22" y2="36" stroke="#C9A84C" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.5"/>
+          <circle cx="22" cy="22" r="2" fill="#C9A84C" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="disc-name">Biology & DNA</div>
+      <div class="disc-teaser">The genetic code is written in triplets — codons of three bases.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>The genetic code — the instruction manual for all living things on earth — is written in <span class="highlight">triplets called codons</span>. Every three nucleotide bases (A, T, G, C) on a DNA strand encode one amino acid. The entire language of life, from bacteria to human beings, is built on this triadic structure.</p>
+        <p>DNA itself is structured in three tiers: <span class="highlight">the sequence (primary structure), the double helix (secondary), and chromatin folding (tertiary)</span>. All three levels must be intact for genetic information to be correctly stored and retrieved.</p>
+        <p>The three domains of life — <span class="highlight">Bacteria, Archaea, and Eukaryota</span> — represent the foundational taxonomic division of all living organisms on Earth. Every living thing belongs to exactly one of three domains.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATHEMATICS -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="6" y="28" fill="#C9A84C" font-size="22" font-family="Georgia, serif" font-weight="700" opacity="0.9">3</text>
+          <line x1="28" y1="12" x2="38" y2="32" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+          <line x1="28" y1="12" x2="18" y2="32" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+          <line x1="18" y1="32" x2="38" y2="32" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="disc-name">Mathematics</div>
+      <div class="disc-teaser">Three is the first odd prime. The first truly interesting number.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Three is the <span class="highlight">first odd prime number</span>, and the first number that can form a pattern. One stands alone. Two creates only opposition — a binary. Three is the minimum for a majority, a sequence, a structure. Mathematicians call it the foundation of pattern itself.</p>
+        <p>The <span class="highlight">Pythagorean triple</span> — 3, 4, 5 — is the simplest set of integers satisfying the Pythagorean theorem, a² + b² = c². This was known to ancient Egyptians and Babylonians thousands of years before Pythagoras. It made right-angle construction possible in the physical world.</p>
+        <p>Three points define a circle. Three non-collinear points define a plane. <span class="highlight">Three is the minimum dimension for non-trivial structure</span> across virtually every branch of mathematics — from topology to number theory to group theory.</p>
+        <p>Even the number 37 — which Veritasium's Derek Muller identified in a survey of 200,000 people as humanity's most-chosen "random" number — is <span class="highlight">the product of 3 and 12, plus 1</span>, and sits at 37% of the way through 1-100, close to the mathematically optimal stopping point in decision theory. Three has a fingerprint even in the numbers we unconsciously reach for.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="14" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <path d="M22 8 L22 22 L32 28" stroke="#C9A84C" stroke-width="1.2"/>
+          <circle cx="22" cy="22" r="2" fill="#C9A84C"/>
+        </svg>
+      </div>
+      <div class="disc-name">Philosophy</div>
+      <div class="disc-teaser">Thesis. Antithesis. Synthesis. Every idea resolves in three.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Hegel was, by all accounts, <span class="highlight">obsessed with dividing everything into threes</span>. His philosophical system — every section, every subsection, nearly every sub-subsection — organizes into triadic structures. He saw the triadic form as the movement of reality itself: any position generates its opposition, and the opposition resolves into something that preserves both.</p>
+        <div class="disc-pullquote">
+          <p class="disc-pullquote-text">“The difficulty in comprehending that, for example, one is three and three is one, stems from the fact that one is devoid of all relation and therefore does not in its own self exhibit the determination through which it passes into its opposite; on the contrary, one is essentially a sheer excluding and rejection of such a relation.”</p>
+          <p class="disc-pullquote-source">Georg Wilhelm Friedrich Hegel · <em>Science of Logic</em> · Remark on numerical distinctions (W. H. Johnston &amp; L. G. Struthers, trans.)</p>
+        </div>
+        <p>Before Hegel, Aristotle observed that argument requires three elements: <span class="highlight">logos (logic), ethos (character), and pathos (emotion)</span>. Leave any one out and persuasion fails. This framework has governed rhetoric for 2,400 years.</p>
+        <p>Kant's three critiques — <span class="highlight">Pure Reason, Practical Reason, Judgment</span> — define the complete range of philosophical inquiry. Peirce organized semiotics in three: sign, object, interpretant. Aristotle organized drama in three: beginning, middle, end. The pattern is not imposed on philosophy. It arises from it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NARRATIVE -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="8" y1="14" x2="36" y2="14" stroke="#C9A84C" stroke-width="1.2"/>
+          <line x1="8" y1="22" x2="36" y2="22" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+          <line x1="8" y1="30" x2="28" y2="30" stroke="#C9A84C" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="disc-name">Narrative & Story</div>
+      <div class="disc-teaser">Every story ever told has three acts. Setup. Confrontation. Resolution.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Aristotle first codified it: every story has <span class="highlight">a beginning, a middle, and an end</span>. Hollywood calls this the three-act structure. Every film you've ever been moved by, every novel you couldn't put down, follows this architecture. Act One establishes the world. Act Two shatters it. Act Three resolves it — or refuses to.</p>
+        <p>Folk traditions across every culture independently landed on the same number: the <span class="highlight">three trials, the three brothers, the three wishes, the three chances</span>. The first attempt shows effort. The second shows persistence. The third brings resolution. This rhythm satisfies something deep in human cognition.</p>
+        <p>Cognitive psychology confirms that <span class="highlight">human short-term memory reliably holds three to four chunks</span> of information at once (Miller, 1956). The rule of three in rhetoric — "blood, sweat, and tears"; "life, liberty, and the pursuit of happiness"; "veni, vidi, vici" — is not a stylistic trick. It is the exact load of the working mind.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEOLOGY -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="22,6 38,34 6,34" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+          <circle cx="22" cy="20" r="7" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.6"/>
+          <circle cx="22" cy="22" r="2" fill="#C9A84C" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="disc-name">Theology</div>
+      <div class="disc-teaser">The Trinity. Three days. Three witnesses. God's own arithmetic.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>The Christian doctrine of the <span class="highlight">Trinity</span> — Father, Son, and Holy Spirit, three persons in one God — is not merely a theological position. Hegel argued that the trinitarian structure of God was not to be taken on faith alone, but was <em>confirmed</em> by the triadic structure of reality itself. Three is the form that the eternal takes when it enters time.</p>
+        <p>Across Scripture: Jesus fasted <span class="highlight">forty days but rose on the third</span>. Peter denied Christ three times; was asked three times, "Do you love me?" The three Magi. The three crosses. Three hours of darkness. The number appears not as coincidence, but as theology embedded in event.</p>
+        <p>The Bible requires <span class="highlight">two or three witnesses</span> to establish truth (Deuteronomy 19:15 — a law Paul echoes in 2 Corinthians 13:1). In Revelation, the divine declaration is three-fold: <em>Holy, holy, holy.</em> The repetition to three is not literary excess. In Hebrew thought, three-fold repetition is the superlative of all superlatives.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL SCIENCE -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="16" r="5" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <circle cx="11" cy="32" r="5" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <circle cx="33" cy="32" r="5" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <line x1="17" y1="20" x2="16" y2="27" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+          <line x1="27" y1="20" x2="28" y2="27" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+          <line x1="16" y1="33" x2="28" y2="33" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="disc-name">Social Science</div>
+      <div class="disc-teaser">Two parties conflict. A third resolves. Every mediation, every peace.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>Sociologist Georg Simmel observed that <span class="highlight">the triad is the minimal social structure</span>. A dyad — two people — is unstable; either person leaving destroys the relationship entirely. The moment a third enters, the group becomes stable: two can outvote one, alliances form, mediation becomes possible. The third party transforms a binary conflict into resolvable tension.</p>
+        <p>Every legal system in history requires a <span class="highlight">third party — a judge or arbiter</span> — to resolve disputes between two parties. Without the third, you have only force or impasse. With the third, you have justice.</p>
+        <p>The United States government is organized into <span class="highlight">three branches</span> — executive, legislative, judicial — specifically because the founders understood that two powers always collapse into dominance. Three creates the tension that produces balance. This structural principle appears in democracies worldwide.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MUSIC -->
+  <div class="disc-card" onclick="toggleCard(this)">
+    <div class="disc-header">
+      <div class="disc-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="32" r="4" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <circle cx="30" cy="29" r="4" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <line x1="18" y1="32" x2="18" y2="14" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="34" y1="29" x2="34" y2="11" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="18" y1="14" x2="34" y2="11" stroke="#C9A84C" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="disc-name">Music</div>
+      <div class="disc-teaser">The triad chord. Three-four time. The I-IV-V progression.</div>
+      <div class="disc-toggle">+</div>
+    </div>
+    <div class="disc-body">
+      <div class="disc-content">
+        <p>The fundamental unit of Western harmony is the <span class="highlight">triad</span> — a chord of three notes (root, third, fifth). A single note is a tone. Two notes create an interval — consonance or tension. Three notes produce a chord: something completely new, a harmonic relationship that neither single note could create alone.</p>
+        <p>The <span class="highlight">I–IV–V progression</span> underpins the vast majority of popular, blues, country, rock, and gospel music. Three chords. The simplest, most satisfying, most universal harmonic statement in all of music history.</p>
+        <p>Three-four time — the <span class="highlight">waltz meter</span> — is considered by musicians the most natural of all time signatures, corresponding to the natural rhythm of the human stride. The ear hears one strong beat followed by two weaker ones and experiences resolution. Two would be binary and mechanical. Four would be martial. Three breathes.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /disc-grid -->
+</div>
+
+<div class="divider"></div>
+
+<!-- BRIDGE SECTION -->
+<div class="bridge-section">
+  <div class="bridge-inner">
+    <div class="section-label" style="text-align:center; margin-bottom: 12px;">The Triangle in Engineering</div>
+    <div class="section-title" style="text-align:center; font-size: clamp(22px, 4vw, 36px); margin-bottom: 24px;">Why Every Bridge<br>Is Built on Threes</div>
+    <svg id="bridge-svg" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Water -->
+      <rect x="0" y="220" width="900" height="40" fill="#0A0A08"/>
+      <line x1="0" y1="220" x2="900" y2="220" stroke="#2A2820" stroke-width="1"/>
+      <!-- Road deck -->
+      <rect x="50" y="200" width="800" height="10" fill="#1c1c18" stroke="#2A2820" stroke-width="1"/>
+      <!-- Left tower base -->
+      <rect x="170" y="160" width="20" height="50" fill="#1c1c18" stroke="#2A2820" stroke-width="1"/>
+      <!-- Right tower base -->
+      <rect x="710" y="160" width="20" height="50" fill="#1c1c18" stroke="#2A2820" stroke-width="1"/>
+      <!-- Left tower vertical -->
+      <line x1="180" y1="60" x2="180" y2="165" stroke="#C9A84C" stroke-width="2.5"/>
+      <!-- Right tower vertical -->
+      <line x1="720" y1="60" x2="720" y2="165" stroke="#C9A84C" stroke-width="2.5"/>
+      <!-- Left tower crossbar -->
+      <line x1="165" y1="100" x2="195" y2="100" stroke="#C9A84C" stroke-width="2"/>
+      <!-- Right tower crossbar -->
+      <line x1="705" y1="100" x2="735" y2="100" stroke="#C9A84C" stroke-width="2"/>
+      <!-- Main cables -->
+      <path d="M180 65 Q450 30 720 65" stroke="#C9A84C" stroke-width="2" fill="none"/>
+      <path d="M180 65 Q450 45 720 65" stroke="#C9A84C" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <!-- Side cables left -->
+      <path d="M50 205 Q115 135 180 65" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <!-- Side cables right -->
+      <path d="M850 205 Q785 135 720 65" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <!-- Vertical hangers - left side of main span -->
+      <line x1="240" y1="200" x2="233" y2="57" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="290" y1="200" x2="278" y2="45" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="340" y1="200" x2="323" y2="38" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="390" y1="200" x2="370" y2="33" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="450" y1="200" x2="450" y2="31" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <!-- Vertical hangers - right side -->
+      <line x1="510" y1="200" x2="530" y2="33" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="560" y1="200" x2="577" y2="38" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="610" y1="200" x2="622" y2="45" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <line x1="660" y1="200" x2="667" y2="57" stroke="#8A6F30" stroke-width="0.8" opacity="0.7"/>
+      <!-- Triangular TRUSS below deck -->
+      <g opacity="0.8">
+        <!-- Truss top chord -->
+        <line x1="50" y1="210" x2="170" y2="210" stroke="#C9A84C" stroke-width="1.5"/>
+        <line x1="730" y1="210" x2="850" y2="210" stroke="#C9A84C" stroke-width="1.5"/>
+        <!-- Truss bottom chord -->
+        <line x1="50" y1="240" x2="170" y2="240" stroke="#C9A84C" stroke-width="1.5"/>
+        <line x1="730" y1="240" x2="850" y2="240" stroke="#C9A84C" stroke-width="1.5"/>
+        <!-- Left truss diagonals - TRIANGLES -->
+        <line x1="50" y1="210" x2="50" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="50" y1="210" x2="80" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="80" y1="210" x2="80" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="80" y1="210" x2="110" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="110" y1="210" x2="110" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="110" y1="210" x2="140" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="140" y1="210" x2="140" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="140" y1="210" x2="170" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="170" y1="210" x2="170" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <!-- Right truss diagonals -->
+        <line x1="730" y1="210" x2="730" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="730" y1="210" x2="760" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="760" y1="210" x2="760" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="760" y1="210" x2="790" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="790" y1="210" x2="790" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="790" y1="210" x2="820" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="820" y1="210" x2="820" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="820" y1="210" x2="850" y2="240" stroke="#C9A84C" stroke-width="1"/>
+        <line x1="850" y1="210" x2="850" y2="240" stroke="#C9A84C" stroke-width="1"/>
+      </g>
+      <!-- Gold dot accent on towers -->
+      <circle cx="180" cy="65" r="4" fill="#C9A84C"/>
+      <circle cx="720" cy="65" r="4" fill="#C9A84C"/>
+      <!-- Labels -->
+      <text x="450" y="18" fill="#8A6F30" font-size="11" font-family="'Courier Prime', monospace" text-anchor="middle" letter-spacing="3">TRIANGULAR TRUSSES</text>
+      <text x="180" y="52" fill="#C9A84C" font-size="9" font-family="'Courier Prime', monospace" text-anchor="middle" letter-spacing="2">TOWER</text>
+      <text x="720" y="52" fill="#C9A84C" font-size="9" font-family="'Courier Prime', monospace" text-anchor="middle" letter-spacing="2">TOWER</text>
+    </svg>
+    <div class="bridge-caption">The triangular truss — the only geometrically rigid shape — is the load-bearing principle behind every bridge, crane, and roof structure in history</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TRIANGLE INTERACTIVE -->
+<section class="section">
+  <div class="section-label">Interactive</div>
+  <div class="section-title">The Three-Body<br>Problem of Ideas</div>
+</section>
+
+<div style="max-width:900px; margin: 0 auto 80px; padding: 0 20px;">
+<div class="triangle-viz">
+  <div class="tri-svg-wrap">
+    <svg id="tri-main" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer triangle -->
+      <polygon id="tri-outer" points="140,20 260,230 20,230" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.9"/>
+      <!-- Inner glow -->
+      <polygon points="140,20 260,230 20,230" fill="#C9A84C" fill-opacity="0.03"/>
+      <!-- Vertices glow -->
+      <circle id="v1" cx="140" cy="20" r="5" fill="#C9A84C" opacity="0.9"/>
+      <circle id="v2" cx="260" cy="230" r="5" fill="#C9A84C" opacity="0.9"/>
+      <circle id="v3" cx="20" cy="230" r="5" fill="#C9A84C" opacity="0.9"/>
+      <!-- Medians -->
+      <line x1="140" y1="20" x2="140" y2="230" stroke="#C9A84C" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.3"/>
+      <line x1="260" y1="230" x2="80" y2="125" stroke="#C9A84C" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.3"/>
+      <line x1="20" y1="230" x2="200" y2="125" stroke="#C9A84C" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.3"/>
+      <!-- Center point -->
+      <circle cx="140" cy="160" r="3" fill="#C9A84C" opacity="0.5"/>
+      <!-- Labels (dynamic via JS) -->
+      <text id="t1" x="140" y="12" fill="#C9A84C" font-size="11" font-family="'Courier Prime', monospace" text-anchor="middle">FATHER</text>
+      <text id="t2" x="270" y="248" fill="#C9A84C" font-size="11" font-family="'Courier Prime', monospace" text-anchor="end">SON</text>
+      <text id="t3" x="10" y="248" fill="#C9A84C" font-size="11" font-family="'Courier Prime', monospace" text-anchor="start">SPIRIT</text>
+    </svg>
+  </div>
+
+  <div class="tri-tabs" id="tri-tabs">
+    <button class="tri-tab active" onclick="setTriTab(this, 0)">Theology</button>
+    <button class="tri-tab" onclick="setTriTab(this, 1)">Physics</button>
+    <button class="tri-tab" onclick="setTriTab(this, 2)">Philosophy</button>
+    <button class="tri-tab" onclick="setTriTab(this, 3)">Narrative</button>
+    <button class="tri-tab" onclick="setTriTab(this, 4)">Governance</button>
+    <button class="tri-tab" onclick="setTriTab(this, 5)">Music</button>
+  </div>
+
+  <div id="tri-panel-0" class="tri-content active">
+    <h3>The Trinity</h3>
+    <p>Father, Son, Holy Spirit — three distinct persons, one divine being. This is not a contradiction that Christianity asks you to resolve logically. It is the pattern of reality taking its ultimate form. Hegel, the most systematic philosopher of the 19th century, argued that the trinitarian structure wasn't just theology — it was the shape that all existence takes when it achieves completion.</p>
+  </div>
+  <div id="tri-panel-1" class="tri-content">
+    <h3>Quarks: Red, Green, Blue</h3>
+    <p>In Quantum Chromodynamics, quarks carry one of three "color charges" — red, green, or blue (not actual colors, but analogous force properties). A proton requires one of each. All three must be present for the particle to be stable and color-neutral. Two quarks cannot bind stably. Four is unnecessary. Three is exact.</p>
+    <p>The universe chose three-fold color symmetry as the architecture for matter itself. Every atom in your body is, at its core, a triadic structure held together by this principle.</p>
+  </div>
+  <div id="tri-panel-2" class="tri-content">
+    <h3>Thesis · Antithesis · Synthesis</h3>
+    <p>Hegel observed that thought never advances in straight lines. Every position (thesis) generates its opposition (antithesis). Left alone, they cancel each other. But the collision produces something new — a synthesis that preserves both while transcending the conflict between them. Then the synthesis becomes a new thesis and the process continues.</p>
+    <p>This is not a logic game. Hegel believed it was the actual movement of history, of ideas, of spirit — that reality itself advances through triadic resolution. The third is never merely a compromise. It is the emergence of something genuinely new.</p>
+  </div>
+  <div id="tri-panel-3" class="tri-content">
+    <h3>Setup · Conflict · Resolution</h3>
+    <p>Every story ever told that has moved a human being does so through three acts. The setup establishes what is. The conflict destroys it. The resolution either restores, transforms, or mourns what was lost. Two acts leave you breathless with tension. Four dilutes the crisis. Three is the exact shape of human experience moving through time.</p>
+    <p>Aristotle called it a beginning, middle, and end. This wasn't aesthetic advice. It was an observation about the structure of all meaningful events.</p>
+  </div>
+  <div id="tri-panel-4" class="tri-content">
+    <h3>Executive · Legislative · Judicial</h3>
+    <p>The separation of powers into three branches is not historical accident. The founders of modern democracies understood that two powers always collapse toward dominance — one eventually subsumes the other. Three creates a tension that cannot be resolved by elimination. Each branch checks the other two. Power becomes a triadic equilibrium.</p>
+    <p>This structural insight appears in governments worldwide, regardless of culture, because it reflects something true about how stability requires three forces, not two.</p>
+  </div>
+  <div id="tri-panel-5" class="tri-content">
+    <h3>Root · Third · Fifth</h3>
+    <p>A single note is a sound. Two notes create an interval — the raw material of tension or consonance. Three notes create a chord: something categorically new, with harmonic color that neither note alone could produce. The major triad (root, major third, perfect fifth) is the most stable, complete, and universal sound in Western music.</p>
+    <p>The I–IV–V progression — three chords — underlies nearly all of blues, gospel, country, and rock. It is the harmonic minimum for a complete musical statement. Beyond three, you are embellishing. At three, you have said everything necessary.</p>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- THE PATTERN -->
+<section class="section">
+  <div class="section-label">The Pattern at a Glance</div>
+  <div class="section-title">Three.<br>Everywhere.</div>
+</section>
+
+<div style="max-width:900px; margin: 0 auto 80px; padding: 0 20px;">
+<div class="pattern-grid" id="pattern-grid">
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Quarks per proton</div>
+    <div class="pattern-desc">Up, up, down — the foundation of every atom in existence</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Spatial dimensions</div>
+    <div class="pattern-desc">The only configuration where stable chemistry and gravity can coexist</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Quark color charges</div>
+    <div class="pattern-desc">Red, green, blue — all three required for color neutrality</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Families of matter</div>
+    <div class="pattern-desc">The Standard Model organizes all known particles into three generations</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Subatomic particles</div>
+    <div class="pattern-desc">Proton, neutron, electron — the complete building set of all matter</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">States of matter</div>
+    <div class="pattern-desc">Solid, liquid, gas — the complete range of ordinary matter</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">DNA codon length</div>
+    <div class="pattern-desc">Every amino acid in every living thing is encoded in three bases</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Domains of life</div>
+    <div class="pattern-desc">Bacteria, Archaea, Eukaryota — the complete tree of all living things</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Primary colors (light)</div>
+    <div class="pattern-desc">Red, green, blue — all colors of visible experience emerge from three</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Acts in every story</div>
+    <div class="pattern-desc">Setup, confrontation, resolution — from Aristotle to Hollywood</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Branches of government</div>
+    <div class="pattern-desc">The minimum for stable power — replicated in democracies worldwide</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Notes in a chord</div>
+    <div class="pattern-desc">The triad — root, third, fifth — is the irreducible unit of harmony</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Persons in the Trinity</div>
+    <div class="pattern-desc">Father, Son, Holy Spirit — the eternal structure of perfect relationship</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Points define a plane</div>
+    <div class="pattern-desc">The geometric minimum to establish any flat surface in space</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Sides of the triangle</div>
+    <div class="pattern-desc">The only polygon that cannot deform — the only inherently rigid shape</div>
+  </div>
+  <div class="pattern-cell">
+    <div class="pattern-num">3</div>
+    <div class="pattern-label">Parts of a syllogism</div>
+    <div class="pattern-desc">Major premise, minor premise, conclusion — the complete unit of logic</div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="section-label" style="display:block; margin-bottom: 24px;">The Conclusion</div>
+  <div class="closing-quote">"The universe does not behave like a brute fact to be catalogued — it behaves like a structured utterance, the kind that implies, by its very coherence, a mind behind it."</div>
+  <div class="closing-source">— Stones & Anchors Curriculum</div>
+  <div class="closing-body">
+    One is isolation. Two is tension. Three is the first number that creates something genuinely new — pattern, stability, resolution. It appears at the sub-atomic level, at the relational level, at the structural level of language and logic and law.<br><br>
+    This is not numerology. It is observation. The pattern scales without breaking — from quarks to constitutions, from chords to codons, from bridge trusses to the Trinity.<br><br>
+    You can call it convergence. You can call it mathematics. Or you can ask what kind of mind would build reality this way — and why.
+  </div>
+</div>
+
+<script>
+  // Toggle discipline cards
+  function toggleCard(card) {
+    const body = card.querySelector('.disc-body');
+    const isOpen = card.classList.contains('open');
+    
+    // Close all
+    document.querySelectorAll('.disc-card').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.disc-body').classList.remove('open');
+    });
+    
+    // Open clicked if was closed
+    if (!isOpen) {
+      card.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // Triangle tab data
+  const triData = [
+    { v1: 'FATHER', v2: 'SON', v3: 'SPIRIT' },
+    { v1: 'RED', v2: 'GREEN', v3: 'BLUE' },
+    { v1: 'THESIS', v2: 'ANTITHESIS', v3: 'SYNTHESIS' },
+    { v1: 'SETUP', v2: 'CONFLICT', v3: 'RESOLUTION' },
+    { v1: 'EXECUTIVE', v2: 'LEGISLATIVE', v3: 'JUDICIAL' },
+    { v1: 'ROOT', v2: 'THIRD', v3: 'FIFTH' }
+  ];
+
+  function setTriTab(btn, idx) {
+    document.querySelectorAll('.tri-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tri-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tri-panel-' + idx).classList.add('active');
+    
+    const d = triData[idx];
+    document.getElementById('t1').textContent = d.v1;
+    document.getElementById('t2').textContent = d.v2;
+    document.getElementById('t3').textContent = d.v3;
+    
+    // Pulse animation
+    ['v1','v2','v3'].forEach(id => {
+      const el = document.getElementById(id);
+      el.setAttribute('r', '8');
+      setTimeout(() => { el.setAttribute('r', '5'); }, 300);
+    });
+  }
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pattern-cell').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+---
+description: Default to the bible-verse-card workflow whenever the user pastes or names a Bible verse reference, unless they opt out.
+alwaysApply: true
+---
+
+# Bible verse references (default)
+
+When the user **pastes or types a Bible verse reference** (e.g. `Psalm 118:22`, `John 3:16`, `Gen 1:1`) or clearly asks to add scripture to a page, **assume they want the full verse-card treatment** unless they explicitly opt out.
+
+**Default behavior:** Follow the project skill at `.cursor/skills/bible-verse-card/SKILL.md` — modern card UI, verse title, verse text, etymology for key words, and cultural/historical significance tied to the verse.
+
+**Opt-out phrases** (do **not** auto-apply the full card; follow only what they ask): e.g. “just the text”, “no etymology”, “quote only”, “don’t use the verse card”, “simple link”, “translation check only”.
+
+If the target HTML file is unclear, ask once before inserting markup.

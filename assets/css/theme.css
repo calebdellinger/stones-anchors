@@ -1,0 +1,60 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --stone:       #2c2a26;
+  --slate:       #3d3a34;
+  --sand:        #c8b99a;
+  --cream:       #f5f0e8;
+  --rope:        #8b6f47;
+  --accent:      #4a6741;
+  --light-stone: #6b645a;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: var(--stone);
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--slate);
+}
+
+a {
+  color: var(--sand);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 185, 154, 0.35);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+a:hover {
+  color: var(--cream);
+  border-bottom-color: var(--rope);
+}
+
+.details a {
+  color: var(--cream);
+  border-bottom-color: rgba(200, 185, 154, 0.35);
+}
+
+.details a:hover {
+  color: var(--sand);
+  border-bottom-color: var(--rope);
+}
+
+button {
+  font: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
