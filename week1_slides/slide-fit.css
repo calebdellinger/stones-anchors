@@ -1,0 +1,24 @@
+/* Load after each slide's inline styles. Scales the 1280px-wide artboard to the iframe, centered. */
+/*
+   Height uses 820px (not 720) in the scale ratio so panels that run slightly taller than 720px
+   still fit — avoids top/bottom clipping. Then × 0.85 for the requested ~15% inset.
+*/
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2c2a26;
+}
+
+.slide-container {
+  flex-shrink: 0;
+  /* min(fit_x, fit_y) × 0.85 — 820px height budget avoids clipping tall panels */
+  zoom: min(calc(100vw / 1280 * 0.85), calc(100vh / 820 * 0.85));
+}

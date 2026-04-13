@@ -279,3 +279,51 @@ body.page-intro .site-main-inner {
   font-weight: 600;
   color: var(--stone);
 }
+
+/* Week 1 slide viewer: centered deck, no page scroll — chrome = header + prev/next only */
+body.page-slide-viewer {
+  --slide-chrome: 6.75rem;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+body.page-slide-viewer .site-header-inner {
+  max-width: none;
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
+  padding-top: max(0.85rem, env(safe-area-inset-top));
+}
+
+body.page-slide-viewer .site-nav .slide-viewer-back {
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sand);
+  border-bottom: 1px solid rgba(200, 185, 154, 0.35);
+  margin-right: 0.35rem;
+}
+
+body.page-slide-viewer .site-footer {
+  display: none;
+}
+
+body.page-slide-viewer main.site-main-inner.slide-viewer-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0.25rem max(0.5rem, env(safe-area-inset-left)) max(0.35rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-right));
+  background: var(--cream);
+}
+
+@media (max-width: 520px) {
+  body.page-slide-viewer {
+    --slide-chrome: 7.25rem;
+  }
+}
