@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Leadership Grid</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c2a26; font-family: Georgia, 'Times New Roman', serif; }
+    .slide-container { width: 1280px; min-height: 720px; background: #2c2a26; display: flex; align-items: center; justify-content: center; }
+    .panel { width: 1160px; min-height: 640px; background: #f5f0e8; border: 1px solid rgba(139,111,71,0.35); position: relative; }
+    .panel::before, .panel::after, .corner-br, .corner-bl { content: ""; position: absolute; width: 24px; height: 24px; border-color: #8b6f47; border-style: solid; }
+    .panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .panel::after { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-br { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+    .corner-bl { left: -1px; bottom: -1px; border-width: 0 0 2px 2px; }
+    .header { height: 114px; padding-top: 28px; text-align: center; }
+    .eyebrow { font-family: 'Palatino Linotype', Palatino, Georgia, serif; color: #4a6741; text-transform: uppercase; letter-spacing: 0.28em; font-size: 13px; margin-bottom: 10px; }
+    h1 { font-family: 'Palatino Linotype', Palatino, Georgia, serif; color: #2c2a26; font-size: 36px; line-height: 1.14; }
+    .divider { width: 320px; margin: 14px auto 0; display: flex; gap: 14px; align-items: center; }
+    .divider .line { flex: 1; height: 1px; background: rgba(139,111,71,0.55); }
+    .divider .dot { width: 8px; height: 8px; border-radius: 50%; background: #8b6f47; }
+    .content { height: 458px; padding: 20px 38px 0; display: grid; grid-template-columns: 454px 1fr; gap: 26px; }
+    .image-wrap { width: 454px; height: 360px; border: 1px solid rgba(139,111,71,0.35); background: #ddd3c2; display: flex; align-items: center; justify-content: center; }
+    .image-wrap img { width: 434px; height: 340px; object-fit: cover; filter: saturate(80%) contrast(95%); }
+    .right { display: grid; grid-template-rows: 300px 102px; gap: 16px; }
+    .grid { border-top: 2px solid rgba(139,111,71,0.48); padding-top: 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .pillar h2 { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 26px; line-height: 1.12; color: #2c2a26; margin-bottom: 8px; }
+    .pillar p { font-size: 16px; line-height: 1.38; color: #3d3a34; margin-bottom: 8px; }
+    .pillar .verse { border-top: 1px solid rgba(139,111,71,0.28); padding-top: 8px; font-size: 14px; line-height: 1.3; color: #3d3a34; }
+    .pillar .verse strong { color: #2c2a26; }
+    .pillar:nth-child(1) h2 { color: #8b6f47; }
+    .pillar:nth-child(2) h2 { color: #4a6741; }
+    .pillar:nth-child(3) h2 { color: #2c2a26; }
+    .closing { border-top: 1px solid rgba(139,111,71,0.35); padding-top: 14px; font-size: 19px; line-height: 1.46; color: #2c2a26; }
+    .closing strong { color: #8b6f47; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="panel">
+      <div class="corner-br"></div>
+      <div class="corner-bl"></div>
+      <div class="header">
+        <div class="eyebrow">Week 1 Closing Framework</div>
+        <h1>The Leadership Grid</h1>
+        <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+      </div>
+      <div class="content">
+        <div class="image-wrap">
+          <img src="/home/ubuntu/upload/search_images/kakWWdbLs4PN.jpg" alt="Mural expressing justice, mercy, and humility" />
+        </div>
+        <div class="right">
+          <div class="grid">
+            <div class="pillar">
+              <h2>Justice</h2>
+              <p>Ethics, integrity, and fair dealing in every sphere of responsibility.</p>
+              <div class="verse"><strong>James 3:17</strong><br/>Wisdom from above is <strong>impartial</strong> and full of good fruit.</div>
+            </div>
+            <div class="pillar">
+              <h2>Mercy</h2>
+              <p>Empathy, patience, and the willingness to restore rather than discard people.</p>
+              <div class="verse"><strong>Luke 6:36</strong><br/>Be <strong>merciful</strong>, even as your Father is merciful.</div>
+            </div>
+            <div class="pillar">
+              <h2>Humility</h2>
+              <p>Teachability, low ego, and an approachability that stays near to others.</p>
+              <div class="verse"><strong>1 Peter 5:5</strong><br/>Clothe yourselves with <strong>humility</strong> toward one another.</div>
+            </div>
+          </div>
+          <div class="closing"><strong>Closing insight:</strong> Strong leadership is not measured only by force. It is revealed by how a man handles power, people, and posture under God.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

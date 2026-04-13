@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delegation Multiplies the Mission</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c2a26; font-family: Georgia, 'Times New Roman', serif; }
+    .slide-container { width: 1280px; min-height: 720px; background: #2c2a26; display: flex; align-items: center; justify-content: center; }
+    .panel { width: 1160px; min-height: 640px; background: #f5f0e8; border: 1px solid rgba(139,111,71,0.35); position: relative; }
+    .panel::before, .panel::after, .corner-br, .corner-bl { content: ""; position: absolute; width: 24px; height: 24px; border-color: #8b6f47; border-style: solid; }
+    .panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .panel::after { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-br { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+    .corner-bl { left: -1px; bottom: -1px; border-width: 0 0 2px 2px; }
+    .header { height: 116px; padding-top: 28px; text-align: center; }
+    .eyebrow { font-family: 'Palatino Linotype', Palatino, Georgia, serif; color: #4a6741; text-transform: uppercase; letter-spacing: 0.28em; font-size: 13px; margin-bottom: 10px; }
+    h1 { font-family: 'Palatino Linotype', Palatino, Georgia, serif; color: #2c2a26; font-size: 36px; line-height: 1.14; }
+    .divider { width: 350px; margin: 14px auto 0; display: flex; gap: 14px; align-items: center; }
+    .divider .line { flex: 1; height: 1px; background: rgba(139,111,71,0.55); }
+    .divider .dot { width: 8px; height: 8px; border-radius: 50%; background: #8b6f47; }
+    .content { height: 454px; padding: 18px 42px 0; display: grid; grid-template-columns: 486px 1fr; gap: 30px; }
+    .left { border-top: 2px solid rgba(139,111,71,0.48); padding-top: 16px; }
+    .left .big { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 38px; line-height: 1.18; color: #2c2a26; margin-bottom: 14px; }
+    .left .big span { color: #8b6f47; }
+    .left p { font-size: 19px; line-height: 1.52; color: #3d3a34; }
+    .right { display: grid; grid-template-rows: 292px 88px; gap: 14px; }
+    .section-title { font-family: 'Palatino Linotype', Palatino, Georgia, serif; text-transform: uppercase; letter-spacing: 0.16em; font-size: 13px; color: #4a6741; margin-bottom: 10px; }
+    .copy { font-size: 17px; line-height: 1.42; color: #3d3a34; }
+    .verse { border-top: 1px solid rgba(139,111,71,0.35); padding-top: 10px; font-size: 15px; line-height: 1.34; color: #3d3a34; margin-bottom: 8px; }
+    .verse strong { color: #2c2a26; }
+    .takeaway { border-top: 1px solid rgba(139,111,71,0.35); padding-top: 12px; font-size: 17px; line-height: 1.42; color: #2c2a26; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="panel">
+      <div class="corner-br"></div>
+      <div class="corner-bl"></div>
+      <div class="header">
+        <div class="eyebrow">Leadership · 7 of 9</div>
+        <h1>Delegation Multiplies the Mission</h1>
+        <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+      </div>
+      <div class="content">
+        <div class="left">
+          <div class="big">A boss controls people. A leader <span>develops</span> people and entrusts real responsibility.</div>
+          <p>Delegation is not a way to avoid work. It is how leadership scales the mission, prevents burnout, and trains the next generation of able men to carry meaningful weight.</p>
+        </div>
+        <div class="right">
+          <div>
+            <div class="section-title">Biblical pattern</div>
+            <div class="verse"><strong>Exodus 18:21</strong><br/>Jethro tells Moses to appoint able men over groups of thousands, hundreds, fifties, and tens.</div>
+            <div class="verse"><strong>Ecclesiastes 4:12</strong><br/>Though one may be overpowered, two can defend themselves. A cord of three strands is not quickly broken.</div>
+            <div class="verse"><strong>Ephesians 4:11–12</strong><br/>Leaders are given to <strong>equip the saints</strong> for the work of ministry.</div>
+            <div class="verse"><strong>1 Corinthians 12:7</strong><br/>To each is given the manifestation of the Spirit for the <strong>common good</strong>.</div>
+            <div class="copy">The point is not mere efficiency. It is shared strength. Authority entrusted wisely creates health in both the mission and the men carrying it.</div>
+          </div>
+          <div class="takeaway">When leadership gives others room to own real tasks, the work expands, strength is reinforced, and future leaders are formed in the process.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

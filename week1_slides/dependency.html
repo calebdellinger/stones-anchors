@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dependency Beats Autonomy</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c2a26; font-family: Georgia, 'Times New Roman', serif; }
+    .slide-container {
+      width: 1280px;
+      min-height: 720px;
+      background: #2c2a26;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .panel {
+      width: 1160px;
+      min-height: 640px;
+      background: #f5f0e8;
+      border: 1px solid rgba(139,111,71,0.35);
+      position: relative;
+    }
+    .panel::before, .panel::after, .corner-br, .corner-bl {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: #8b6f47;
+      border-style: solid;
+    }
+    .panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .panel::after { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-br { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+    .corner-bl { left: -1px; bottom: -1px; border-width: 0 0 2px 2px; }
+    .header { height: 116px; padding-top: 28px; text-align: center; }
+    .eyebrow { font-family: 'Palatino Linotype', Palatino, Georgia, serif; color: #4a6741; text-transform: uppercase; letter-spacing: 0.28em; font-size: 13px; margin-bottom: 10px; }
+    h1 { font-family: 'Palatino Linotype', Palatino, Georgia, serif; color: #2c2a26; font-size: 36px; line-height: 1.14; }
+    .divider { width: 350px; margin: 14px auto 0; display: flex; gap: 14px; align-items: center; }
+    .divider .line { flex: 1; height: 1px; background: rgba(139,111,71,0.55); }
+    .divider .dot { width: 8px; height: 8px; border-radius: 50%; background: #8b6f47; }
+    .content { height: 454px; padding: 18px 42px 0; display: grid; grid-template-columns: 1fr 298px 1fr; gap: 24px; align-items: start; }
+    .col { border-top: 2px solid rgba(139,111,71,0.48); padding-top: 14px; }
+    .section-title { font-family: 'Palatino Linotype', Palatino, Georgia, serif; text-transform: uppercase; letter-spacing: 0.16em; font-size: 13px; color: #4a6741; margin-bottom: 10px; }
+    .copy { font-size: 18px; line-height: 1.5; color: #3d3a34; }
+    .verse-block { border-top: 1px solid rgba(139,111,71,0.35); padding-top: 10px; margin-top: 12px; }
+    .verse-block p { font-size: 16px; line-height: 1.38; color: #3d3a34; margin-bottom: 8px; }
+    .verse-block strong { color: #2c2a26; }
+    .center {
+      height: 404px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-top: 2px solid rgba(139,111,71,0.48);
+    }
+    .hineni {
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 58px;
+      line-height: 1;
+      color: #2c2a26;
+      margin-bottom: 16px;
+    }
+    .translation {
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      color: #8b6f47;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .center p {
+      width: 232px;
+      font-size: 18px;
+      line-height: 1.48;
+      color: #3d3a34;
+    }
+    .emphasis { color: #2c2a26; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="panel">
+      <div class="corner-br"></div>
+      <div class="corner-bl"></div>
+      <div class="header">
+        <div class="eyebrow">Servant · Subsection 3</div>
+        <h1>Dependency Beats Autonomy</h1>
+        <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+      </div>
+      <div class="content">
+        <div class="col">
+          <div class="section-title">Surrendered will</div>
+          <div class="copy">The core of biblical servanthood is not simply doing assigned tasks. It is yielding personal rule. A servant brings his desires, plans, and instincts into alignment with the purpose of the Master.</div>
+          <div class="verse-block">
+            <p><strong>John 15:5</strong><br/>Apart from Me, <strong>you can do nothing</strong>.</p>
+            <p><strong>Romans 12:1</strong><br/>Present your bodies as a <strong>living sacrifice</strong> to God.</p>
+          </div>
+        </div>
+        <div class="center">
+          <div class="hineni">Here I am</div>
+          <div class="translation">Hineni</div>
+          <p>A posture of being <span class="emphasis">available</span>, <span class="emphasis">attentive</span>, and <span class="emphasis">ready</span> before God.</p>
+        </div>
+        <div class="col">
+          <div class="section-title">Leadership takeaway</div>
+          <div class="copy">Biblical leadership is not radical self-direction. It is radical availability to God. The strongest men are not those who insist on autonomy, but those who can say yes to God's direction quickly, fully, and without bargaining.</div>
+          <div class="verse-block">
+            <p><strong>Galatians 2:20</strong><br/>It is no longer I who live, but <strong>Christ who lives in me</strong>.</p>
+            <p><strong>Philippians 2:13</strong><br/>God works in you both <strong>to will and to work</strong> for His good pleasure.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
