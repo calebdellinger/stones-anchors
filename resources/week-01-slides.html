@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 Slides | Stones &amp; Anchors</title>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .slide-viewer-shell {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .viewer-intro {
+      text-align: center;
+      color: var(--slate);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      max-width: 38rem;
+      margin: 0 auto 0.5rem;
+    }
+
+    .viewer-stage {
+      border: 1px solid rgba(139, 111, 71, 0.22);
+      background: rgba(44, 42, 38, 0.06);
+      padding: 0.9rem;
+    }
+
+    .viewer-frame-wrap {
+      position: relative;
+      background: var(--stone);
+      border: 1px solid rgba(139, 111, 71, 0.3);
+      aspect-ratio: 16 / 9;
+      min-height: 360px;
+    }
+
+    .viewer-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: var(--stone);
+    }
+
+    .viewer-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .viewer-title-block {
+      flex: 1;
+      min-width: 14rem;
+    }
+
+    .viewer-kicker {
+      display: block;
+      font-family: 'Palatino Linotype', Palatino, serif;
+      font-size: 0.56rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.28rem;
+    }
+
+    .viewer-title {
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      color: var(--stone);
+      font-weight: 700;
+    }
+
+    .viewer-count {
+      font-family: 'Palatino Linotype', Palatino, serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rope);
+    }
+
+    .viewer-controls {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .viewer-btn {
+      appearance: none;
+      border: 1px solid rgba(139, 111, 71, 0.35);
+      background: var(--stone);
+      color: var(--cream);
+      padding: 0.7rem 1rem;
+      font-family: 'Palatino Linotype', Palatino, serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .viewer-btn:hover,
+    .viewer-btn:focus-visible {
+      border-color: var(--rope);
+      color: var(--sand);
+      outline: none;
+    }
+
+    .viewer-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .slide-jump-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.65rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .slide-jump-button {
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(139, 111, 71, 0.22);
+      background: rgba(245, 240, 232, 0.65);
+      color: var(--slate);
+      padding: 0.75rem 0.8rem;
+      cursor: pointer;
+    }
+
+    .slide-jump-button:hover,
+    .slide-jump-button:focus-visible,
+    .slide-jump-button.is-active {
+      border-color: var(--rope);
+      background: var(--cream);
+      outline: none;
+    }
+
+    .slide-jump-number {
+      display: block;
+      font-family: 'Palatino Linotype', Palatino, serif;
+      font-size: 0.54rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.28rem;
+    }
+
+    .slide-jump-title {
+      display: block;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: var(--stone);
+    }
+
+    .viewer-helper {
+      font-size: 0.8rem;
+      color: var(--light-stone);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .page-panel-inner {
+        padding: 1.5rem 1.2rem 1.6rem;
+      }
+
+      .page-panel-inner .details {
+        margin-left: -1.2rem;
+        margin-right: -1.2rem;
+        margin-bottom: -1.6rem;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+
+      .viewer-stage {
+        padding: 0.55rem;
+      }
+
+      .viewer-frame-wrap {
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body class="page-inner">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-logo" href="../index.html">Stones <span class="amp">&amp;</span> Anchors</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <a href="../schedule.html">Schedule</a>
+        <a href="index.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main-inner">
+    <div class="page-panel">
+      <div class="band-top"></div>
+      <div class="band-accent"></div>
+
+      <div class="page-panel-inner">
+        <div class="corner-br"></div>
+        <div class="corner-bl"></div>
+
+        <p class="page-eyebrow">Week 1</p>
+        <h1 class="page-title">Servant Leadership Slides</h1>
+
+        <div class="divider compact">
+          <div class="divider-line"></div>
+          <div class="divider-dot"></div>
+          <div class="divider-line"></div>
+        </div>
+
+        <p class="viewer-intro">
+          This viewer keeps the full Week 1 teaching deck inside the Stones &amp; Anchors site so the men can move slide by slide without downloading a PDF. Use the navigation controls below or the slide list to jump directly to a section.
+        </p>
+
+        <section class="slide-viewer-shell" aria-label="Week 1 slide viewer">
+          <div class="viewer-stage">
+            <div class="viewer-frame-wrap">
+              <iframe id="slide-frame" class="viewer-frame" title="Week 1 slide"></iframe>
+            </div>
+
+            <div class="viewer-meta">
+              <div class="viewer-title-block">
+                <span class="viewer-kicker">Current Slide</span>
+                <div id="slide-title" class="viewer-title">Week 1 · Servant Leadership</div>
+                <div id="slide-count" class="viewer-count">Slide 1 of 16</div>
+              </div>
+
+              <div class="viewer-controls" aria-label="Slide navigation controls">
+                <button id="prev-slide" class="viewer-btn" type="button">Previous</button>
+                <button id="next-slide" class="viewer-btn" type="button">Next</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="viewer-helper">Tip: you can also use the left and right arrow keys to move through the deck.</p>
+
+          <ul id="slide-jump-list" class="slide-jump-list" aria-label="Jump to a specific slide"></ul>
+        </section>
+
+        <div class="details">
+          <div class="detail-row">
+            <div>
+              <span class="det-label">Companion Resource</span>
+              <p class="det-value"><a href="../assets/files/week-01-script.md">Open the Week 1 teaching script and discussion questions</a></p>
+            </div>
+          </div>
+          <div class="cta">
+            <p>Return to the Week 1 resources page or walk through the deck here during the study.</p>
+          </div>
+        </div>
+
+        <div class="details back-link-bar">
+          <p><a href="week-01.html">← Back to Week 1 Resources</a></p>
+        </div>
+      </div>
+
+      <div class="band-stack">
+        <div class="band-accent"></div>
+        <div class="band-top"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Stones &amp; Anchors · Men's Bible Study</p>
+  </footer>
+
+  <script>
+    const slides = [
+      { id: 'cover', title: 'Week 1 · Servant Leadership' },
+      { id: 'lion_lamb', title: 'The Lion and the Lamb' },
+      { id: 'servants_belong', title: 'Servants Belong to the House' },
+      { id: 'carry_authority', title: "Servants Carry the Master's Authority" },
+      { id: 'dependency', title: 'Dependency Beats Autonomy' },
+      { id: 'chosen_bond', title: 'Devotion Is a Chosen Bond' },
+      { id: 'vision', title: 'Vision Sees the Build Before the Start' },
+      { id: 'decisiveness', title: 'Decisiveness Breaks Paralysis' },
+      { id: 'accountability', title: 'Accountability Owns the Outcome' },
+      { id: 'eq', title: 'Emotional Intelligence Guards Relationships' },
+      { id: 'resilience', title: 'Resilience Stands Back Up' },
+      { id: 'integrity', title: 'Integrity Makes Leadership Credible' },
+      { id: 'delegation', title: 'Delegation Multiplies the Mission' },
+      { id: 'humility_identity', title: 'Humility Knows Who You Are' },
+      { id: 'humble_walk', title: 'A Humble Walk Stays Teachable' },
+      { id: 'leadership_grid', title: 'The Leadership Grid' }
+    ];
+
+    const frame = document.getElementById('slide-frame');
+    const titleEl = document.getElementById('slide-title');
+    const countEl = document.getElementById('slide-count');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+    const jumpList = document.getElementById('slide-jump-list');
+
+    let currentIndex = 0;
+
+    function slideUrl(id) {
+      return `../week1_slides/${id}.html`;
+    }
+
+    function renderJumpList() {
+      jumpList.innerHTML = slides.map((slide, index) => `
+        <li>
+          <button type="button" class="slide-jump-button${index === currentIndex ? ' is-active' : ''}" data-index="${index}">
+            <span class="slide-jump-number">Slide ${index + 1}</span>
+            <span class="slide-jump-title">${slide.title}</span>
+          </button>
+        </li>
+      `).join('');
+
+      jumpList.querySelectorAll('.slide-jump-button').forEach((button) => {
+        button.addEventListener('click', () => {
+          currentIndex = Number(button.dataset.index);
+          renderViewer();
+        });
+      });
+    }
+
+    function renderViewer() {
+      const slide = slides[currentIndex];
+      frame.src = slideUrl(slide.id);
+      titleEl.textContent = slide.title;
+      countEl.textContent = `Slide ${currentIndex + 1} of ${slides.length}`;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === slides.length - 1;
+      renderJumpList();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex -= 1;
+        renderViewer();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex += 1;
+        renderViewer();
+      }
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft' && currentIndex > 0) {
+        currentIndex -= 1;
+        renderViewer();
+      }
+      if (event.key === 'ArrowRight' && currentIndex < slides.length - 1) {
+        currentIndex += 1;
+        renderViewer();
+      }
+    });
+
+    renderViewer();
+  </script>
+</body>
+</html>
