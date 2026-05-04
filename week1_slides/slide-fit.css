@@ -1,24 +1,27 @@
-/* Load after each slide's inline styles. Scales the 1280px-wide artboard to the iframe, centered. */
-/*
-   Height uses 820px (not 720) in the scale ratio so panels that run slightly taller than 720px
-   still fit — avoids top/bottom clipping. Then × 0.85 for the requested ~15% inset.
-*/
-html,
-body {
+/* slide-fit.css — loaded last in every slide HTML file.
+   Uses JS-driven transform:scale() instead of CSS zoom so it works
+   correctly inside iframes on all browsers (Chrome, Safari, Firefox)
+   regardless of how the iframe is sized by the parent page.
+   The artboard is always 1280 × 720px; we scale it to fill the iframe. */
+
+html, body {
+  width: 100%;
   height: 100%;
   margin: 0;
-}
-
-body {
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #2c2a26;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .slide-container {
+  /* Fixed artboard size — JS will scale this to fit */
+  width: 1280px;
+  min-height: 720px;
   flex-shrink: 0;
-  /* min(fit_x, fit_y) × 0.85 — 820px height budget avoids clipping tall panels */
-  zoom: min(calc(100vw / 1280 * 0.85), calc(100vh / 820 * 0.85));
+  transform-origin: center center;
 }
