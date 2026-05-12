@@ -1,0 +1,27 @@
+/* slide-fit.css — loaded last in every slide HTML file.
+   Uses JS-driven transform:scale() instead of CSS zoom so it works
+   correctly inside iframes on all browsers (Chrome, Safari, Firefox)
+   regardless of how the iframe is sized by the parent page.
+   The artboard is always 1280 × 720px; we scale it to fill the iframe. */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #2c2a26;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-container {
+  /* Fixed artboard size — JS will scale this to fit */
+  width: 1280px;
+  min-height: 720px;
+  flex-shrink: 0;
+  transform-origin: center center;
+}

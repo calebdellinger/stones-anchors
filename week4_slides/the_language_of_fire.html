@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 4 &middot; The Language of Fire</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c2a26; font-family: Georgia, 'Times New Roman', serif; }
+    .slide-container {
+      width: 1280px;
+      min-height: 720px;
+      background: #2c2a26;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .panel {
+      width: 1200px;
+      min-height: 660px;
+      background: #f5f0e8;
+      border: 1px solid rgba(139,111,71,0.38);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 44px 28px;
+      gap: 0;
+    }
+    .panel::before, .panel::after, .corner-br, .corner-bl {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-color: #8b6f47;
+      border-style: solid;
+    }
+    .panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .panel::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-br { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+    .corner-bl { left: -1px;  bottom: -1px; border-width: 0 0 2px 2px; }
+    .header { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 18px; }
+    .eyebrow { font-family: 'Palatino Linotype', Palatino, Georgia, serif; text-transform: uppercase; letter-spacing: 0.28em; font-size: 12px; color: #4a6741; }
+    h1 { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 36px; color: #2c2a26; line-height: 1.1; text-align: center; }
+    .divider { width: 340px; margin: 8px auto 0; display: flex; align-items: center; gap: 14px; }
+    .divider .line { flex: 1; height: 1px; background: rgba(139,111,71,0.55); }
+    .divider .dot  { width: 8px; height: 8px; border-radius: 50%; background: #8b6f47; }
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 18px;
+    }
+    .word-card {
+      background: rgba(139,111,71,0.06);
+      border: 1px solid rgba(139,111,71,0.22);
+      border-top: 3px solid #8b6f47;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .word-lang { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #4a6741; }
+    .word-title { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 22px; color: #2c2a26; line-height: 1.1; font-weight: 700; }
+    .word-gloss { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 13px; color: #8b6f47; letter-spacing: 0.08em; font-style: italic; }
+    .word-divider { height: 1px; background: rgba(139,111,71,0.3); margin: 2px 0; }
+    .word-verse { font-size: 13px; line-height: 1.44; color: #3d3a34; font-style: italic; }
+    .word-ref { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 11px; color: #8b6f47; margin-top: 2px; }
+    .word-note { font-size: 12.5px; line-height: 1.38; color: #6b645a; margin-top: 4px; }
+    .word-note strong { color: #2c2a26; }
+    .takeaway {
+      margin-top: 14px;
+      border-top: 1px solid rgba(139,111,71,0.35);
+      padding-top: 10px;
+      text-align: center;
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 16px;
+      color: #2c2a26;
+      line-height: 1.4;
+    }
+    .takeaway .accent { color: #8b6f47; font-weight: 700; }
+  </style>
+  <link rel="stylesheet" href="slide-fit.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="panel">
+      <div class="corner-br"></div>
+      <div class="corner-bl"></div>
+      <div class="header">
+        <div class="eyebrow">Passion &middot; The Language of Fire</div>
+        <h1>Passion Begins with a Definition, Not a Feeling</h1>
+        <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+      </div>
+      <div class="grid">
+        <div class="word-card">
+          <div class="word-lang">Hebrew</div>
+          <div class="word-title">Qin&rsquo;ah</div>
+          <div class="word-gloss">Jealousy &middot; Zeal</div>
+          <div class="word-divider"></div>
+          <div class="word-verse">&ldquo;I the LORD your God am a jealous God.&rdquo;</div>
+          <div class="word-ref">Exodus 20:5 &middot; ESV</div>
+          <div class="word-note">Burning exclusive devotion &mdash; a fire that will <strong>not share</strong> what it loves. Also used of Phinehas&rsquo;s zeal (Num 25:11) and the &ldquo;zeal of the LORD of hosts&rdquo; (Isa 9:7).</div>
+        </div>
+        <div class="word-card">
+          <div class="word-lang">Greek</div>
+          <div class="word-title">Pathos</div>
+          <div class="word-gloss">Suffering &middot; The Passion</div>
+          <div class="word-divider"></div>
+          <div class="word-verse">&ldquo;He presented himself alive to them after his suffering.&rdquo;</div>
+          <div class="word-ref">Acts 1:3 &middot; ESV</div>
+          <div class="word-note">From <em>pascho</em> &mdash; to suffer. The Passion of Christ is the supreme definition: <strong>love so intense it absorbs the full cost</strong> of what it loves. Passion is not emotion. It is cost.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-lang">Greek</div>
+          <div class="word-title">Ze&omacr;</div>
+          <div class="word-gloss">To Boil &middot; Fervent</div>
+          <div class="word-divider"></div>
+          <div class="word-verse">&ldquo;Be fervent in spirit, serve the Lord.&rdquo;</div>
+          <div class="word-ref">Romans 12:11 &middot; ESV</div>
+          <div class="word-note">Literally, <strong>to boil</strong>. Not warm enthusiasm &mdash; a rolling, overflowing intensity. Paul commands it. Same root used of Apollos (Acts 18:25) &mdash; a man whose passion was visible to all.</div>
+        </div>
+        <div class="word-card">
+          <div class="word-lang">Hebrew</div>
+          <div class="word-title">Esh</div>
+          <div class="word-gloss">Fire</div>
+          <div class="word-divider"></div>
+          <div class="word-verse">&ldquo;For the LORD your God is a consuming fire.&rdquo;</div>
+          <div class="word-ref">Deuteronomy 4:24 &middot; ESV</div>
+          <div class="word-note">Used <strong>370+ times</strong> in the OT. Describes God&rsquo;s presence, judgment, purification, and love. Quoted in Hebrews 12:29 &mdash; the consuming fire is not an OT concept. It is eternal.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <span class="accent">The question is not &ldquo;How passionate am I?&rdquo;</span> &mdash; The question is: What am I willing to burn for?
+      </div>
+    </div>
+  </div>
+  <script src="../assets/js/slide-scale.js"></script>
+</body>
+</html>

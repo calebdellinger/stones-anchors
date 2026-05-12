@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 4 &middot; Eyes Like a Flame of Fire</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #2c2a26; font-family: Georgia, 'Times New Roman', serif; }
+    .slide-container {
+      width: 1280px;
+      min-height: 720px;
+      background: #2c2a26;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .panel {
+      width: 1200px;
+      min-height: 660px;
+      background: #f5f0e8;
+      border: 1px solid rgba(139,111,71,0.38);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 44px 24px;
+    }
+    .panel::before, .panel::after, .corner-br, .corner-bl {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-color: #8b6f47;
+      border-style: solid;
+    }
+    .panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .panel::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-br { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+    .corner-bl { left: -1px;  bottom: -1px; border-width: 0 0 2px 2px; }
+    .header { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-bottom: 16px; }
+    .eyebrow { font-family: 'Palatino Linotype', Palatino, Georgia, serif; text-transform: uppercase; letter-spacing: 0.28em; font-size: 12px; color: #4a6741; }
+    h1 { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 34px; color: #2c2a26; line-height: 1.1; text-align: center; }
+    .divider { width: 340px; margin: 6px auto 0; display: flex; align-items: center; gap: 14px; }
+    .divider .line { flex: 1; height: 1px; background: rgba(139,111,71,0.55); }
+    .divider .dot  { width: 8px; height: 8px; border-radius: 50%; background: #8b6f47; }
+    .content { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .left { border-right: 1px solid rgba(139,111,71,0.25); padding-right: 32px; padding-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .story-label { font-family: 'Palatino Linotype', Palatino, Georgia, serif; text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; color: #4a6741; }
+    .story-title { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 24px; color: #2c2a26; line-height: 1.2; }
+    .story-body { font-size: 15.5px; line-height: 1.52; color: #3d3a34; }
+    .story-body strong { color: #2c2a26; }
+    .takeaway { margin-top: auto; border-top: 1px solid rgba(139,111,71,0.35); padding-top: 10px; font-size: 15.5px; line-height: 1.44; color: #2c2a26; }
+    .takeaway .accent { color: #8b6f47; font-weight: 700; }
+    .right { padding-left: 32px; padding-top: 12px; display: flex; flex-direction: column; gap: 13px; }
+    .verse-block { border-top: 2px solid rgba(139,111,71,0.48); padding-top: 10px; }
+    .verse-ref { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-size: 14px; color: #8b6f47; font-weight: 700; margin-bottom: 5px; letter-spacing: 0.06em; }
+    .verse-text { font-size: 14.5px; line-height: 1.42; color: #3d3a34; font-style: italic; margin-bottom: 5px; }
+    .verse-note { font-size: 13px; line-height: 1.36; color: #6b645a; }
+    .closing-question {
+      margin-top: 14px;
+      background: rgba(139,111,71,0.1);
+      border: 1px solid rgba(139,111,71,0.3);
+      border-left: 4px solid #8b6f47;
+      padding: 12px 16px;
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 17px;
+      line-height: 1.46;
+      color: #2c2a26;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="slide-fit.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="panel">
+      <div class="corner-br"></div>
+      <div class="corner-bl"></div>
+      <div class="header">
+        <div class="eyebrow">Passion &middot; The Consummation</div>
+        <h1>The Fire in His Eyes Is Looking for a Fire in Yours</h1>
+        <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+      </div>
+      <div class="content">
+        <div class="left">
+          <div class="story-label">The Return</div>
+          <div class="story-title">Revelation 19 &mdash; The King Comes Back with Fire in His Eyes</div>
+          <div class="story-body">
+            John falls as if dead when he sees the risen Christ. The description is not gentle: <strong>eyes like a flame of fire</strong>, feet like burnished bronze refined in a furnace, voice like the roar of many waters. This is not the suffering servant of Isaiah 53. This is the Warrior-King.
+          </div>
+          <div class="story-body">
+            The fire in His eyes is the <strong>same fire that has been burning throughout all of Scripture</strong>. The burning bush, the pillar of fire, the coal from the altar, the tongues at Pentecost &mdash; all of it is the same fire, moving toward this moment.
+          </div>
+          <div class="story-body">
+            Jeremiah 20:9 is the most honest verse about passion: <em>&ldquo;There is in my heart as it were a burning fire shut up in my bones, and I am weary of holding it in, and I cannot.&rdquo;</em> Jeremiah tried to quit. He could not. <strong>The fire was not his to control.</strong>
+          </div>
+          <div class="takeaway"><span class="accent">The question the whole Bible asks:</span> When those eyes find you, will they find a fire burning in return?</div>
+        </div>
+        <div class="right">
+          <div class="verse-block">
+            <div class="verse-ref">Revelation 1:14 (ESV)</div>
+            <div class="verse-text">&ldquo;His eyes were like a flame of fire, his feet were like burnished bronze, refined in a furnace.&rdquo;</div>
+            <div class="verse-note">The same furnace Shadrach walked through. The same fire that burned on Carmel. The fire has never gone out &mdash; it has a face now.</div>
+          </div>
+          <div class="verse-block">
+            <div class="verse-ref">Jeremiah 20:9 (ESV)</div>
+            <div class="verse-text">&ldquo;There is in my heart as it were a burning fire shut up in my bones, and I am weary of holding it in, and I cannot.&rdquo;</div>
+            <div class="verse-note">The most honest statement about divine passion in Scripture. Jeremiah tried to quit. The fire was not his to control. Divine passion is placed, not generated.</div>
+          </div>
+          <div class="verse-block">
+            <div class="verse-ref">2 Timothy 1:6 (ESV)</div>
+            <div class="verse-text">&ldquo;Fan into flame the gift of God, which is in you.&rdquo;</div>
+            <div class="verse-note"><em>Anaz&omacr;pure&omacr;</em> &mdash; to stir up dying embers. The fire is already in you. The question is whether you are feeding it. Neglect it and it dims. Feed it and it blazes.</div>
+          </div>
+          <div class="closing-question">
+            What would it look like for you to stop holding the fire in?
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/js/slide-scale.js"></script>
+</body>
+</html>
